@@ -76,11 +76,11 @@ function Form() {
       emoji,
       date,
       notes,
-      position: {lat, lng},
+      lat,
+      lng,
     };
     await createCity(newCity);
     navigate("/app/cities");
-    console.log(newCity);
   }
   if (isLoadingGeocoding) return <Spinner />;
 
@@ -92,7 +92,8 @@ function Form() {
   return (
     <form
       className={`${styles.form} ${isLoading ? styles.loading : ""}`}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+    >
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input

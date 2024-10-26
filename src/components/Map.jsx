@@ -17,6 +17,7 @@ import {useUrlPosition} from "../../hooks/useUrlPosition";
 
 function Map() {
   const {cities} = useCities();
+
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
   const {
@@ -50,15 +51,14 @@ function Map() {
         center={mapPosition}
         zoom={6}
         scrollWheelZoom={true}
-        className={styles.map}>
+        className={styles.map}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
         {cities.map((city) => (
-          <Marker
-            position={[city.position.lat, city.position.lng]}
-            key={city.id}>
+          <Marker position={[city.lat, city.lng]} key={city.id}>
             <Popup>
               <span>
                 {city.emoji} {city.cityName}
